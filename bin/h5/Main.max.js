@@ -38604,21 +38604,25 @@ var Game=(function(_super){
 
 	__proto.runCircle=function(){
 		if (this.curPosNum > this.randPos){
+			this.prePos.skin="gameUI/purpleBox.png";
 			Laya.timer.clear (this ,this.loop);
 		};
 		var time=Browser.now ();
 		if (time > this.runTime){
+			this.prePos.visible=false;
+			this.curPos=this.num2pos (this.curPosNum % 24);
 			if (this.curPosNum < this.randPos *0.5){
 				this.runTime=time+this.runInterval_fast;
+				this.curPos.skin="gameUI/box0.png";
 			}
 			else if (this.curPosNum < this.randPos *0.75){
 				this.runTime=time+this.runInterval_middle;
+				this.curPos.skin="gameUI/box1.png";
 			}
 			else{
 				this.runTime=time+this.runInterval_slow;
+				this.curPos.skin="gameUI/box2.png";
 			}
-			this.prePos.visible=false;
-			this.curPos=this.num2pos (this.curPosNum % 24);
 			this.curPos.visible=true;
 			this.prePos=this.curPos;
 			this.curPosNum++;

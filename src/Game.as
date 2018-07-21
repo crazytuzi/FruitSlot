@@ -96,6 +96,10 @@ package
 		/***当前位置编号***/
 		private var curPosNum : int;
 
+		/**水果类型***/
+		private var fruit_type : int; //若加入奖励设置,类型应该为数组
+
+
 		public function Game ()
 		{
 
@@ -271,10 +275,6 @@ package
 
 		}
 
-		private function updateFruitUI () : void
-		{
-
-		}
 
 
 		/**
@@ -320,70 +320,86 @@ package
 			if ( randnum == 1 )
 			{
 				pos += fruit_posnum[ 15 ][ 0 ];
+				fruit_type = 15;
 			}
 			else if ( randnum == 2 )
 			{
 				pos += fruit_posnum[ 14 ][ 0 ];
+				fruit_type = 14;
 			}
 			else if ( randnum >= 3 && randnum <= 5 )
 			{
 				pos += fruit_posnum[ 13 ][ 0 ];
+				fruit_type = 13;
 			}
 			else if ( randnum >= 6 && randnum <= 8 )
 			{
 				pos += fruit_posnum[ 12 ][ 0 ];
+				fruit_type = 12;
 			}
 			else if ( randnum >= 9 && randnum <= 12 )
 			{
 				pos += fruit_posnum[ 11 ][ 0 ];
+				fruit_type = 11;
 			}
 			else if ( randnum >= 13 && randnum <= 16 )
 			{
 				pos += fruit_posnum[ 10 ][ 0 ];
+				fruit_type = 10;
 			}
 			else if ( randnum >= 17 && randnum <= 22 )
 			{
 				pos += fruit_posnum[ 9 ][ 0 ];
+				fruit_type = 9;
 			}
 			else if ( randnum >= 23 && randnum <= 28 )
 			{
 				pos += fruit_posnum[ 8 ][ 0 ];
+				fruit_type = 8;
 			}
 			else if ( randnum >= 29 && randnum <= 36 )
 			{
 				pos += fruit_posnum[ 7 ][ 0 ];
+				fruit_type = 7;
 			}
 			else if ( randnum >= 37 && randnum <= 44 )
 			{
 				index = Math.round ( Math.random () * ( fruit_posnum[ 6 ].length - 1 ));
-				pos += fruit_posnum[ 6 ][ 0 ];
+				pos += fruit_posnum[ 6 ][ index ];
+				fruit_type = 6;
 			}
 			else if ( randnum >= 45 && randnum <= 56 )
 			{
 				pos += fruit_posnum[ 5 ][ 0 ];
+				fruit_type = 5;
 			}
 			else if ( randnum >= 57 && randnum <= 68 )
 			{
 				index = Math.round ( Math.random () * ( fruit_posnum[ 4 ].length - 1 ));
-				pos += fruit_posnum[ 4 ][ 0 ];
+				pos += fruit_posnum[ 4 ][ index ];
+				fruit_type = 4;
 			}
 			else if ( randnum >= 69 && randnum <= 80 )
 			{
 				pos += fruit_posnum[ 3 ][ 0 ];
+				fruit_type = 3;
 			}
 			else if ( randnum >= 81 && randnum <= 92 )
 			{
 				index = Math.round ( Math.random () * ( fruit_posnum[ 2 ].length - 1 ));
-				pos += fruit_posnum[ 2 ][ 0 ];
+				pos += fruit_posnum[ 2 ][ index ];
+				fruit_type = 2;
 			}
 			else if ( randnum >= 93 && randnum <= 116 )
 			{
 				pos += fruit_posnum[ 1 ][ 0 ];
+				fruit_type = 1;
 			}
 			else if ( randnum >= 117 && randnum <= 140 )
 			{
 				index = Math.round ( Math.random () * ( fruit_posnum[ 0 ].length - 1 ));
-				pos += fruit_posnum[ 0 ][ 0 ];
+				pos += fruit_posnum[ 0 ][ index ];
+				fruit_type = 0;
 			}
 			return pos;
 
@@ -394,8 +410,13 @@ package
 
 			if ( curPosNum > randPos )
 			{
+				//修改皮肤
+				prePos.skin = "gameUI/purpleBox.png";
 				//去除游戏循环
 				Laya.timer.clear ( this , loop );
+				//计算分数
+				CalculateScore ();
+
 					//其他功能...
 					//完成后,发送消息事件
 			}
@@ -406,27 +427,36 @@ package
 			if ( time > this.runTime )
 			{
 
+				prePos.visible = false;
+				curPos = num2pos ( curPosNum % 24 );
 
 				if ( curPosNum < randPos * 0.5 )
 				{
 					this.runTime = time + this.runInterval_fast;
+					curPos.skin = "gameUI/box0.png";
 				}
 				else if ( curPosNum < randPos * 0.75 )
 				{
 					this.runTime = time + this.runInterval_middle;
+					curPos.skin = "gameUI/box1.png";
 				}
 				else
 				{
 					this.runTime = time + this.runInterval_slow;
+					curPos.skin = "gameUI/box2.png";
 				}
-
-				prePos.visible = false;
-				curPos = num2pos ( curPosNum % 24 );
 				curPos.visible = true;
 				prePos = curPos;
 				curPosNum++;
 			}
 
+
+		}
+
+		private function CalculateScore () : void
+		{
+
+			var score : int = 0;
 
 		}
 

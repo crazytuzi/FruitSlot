@@ -36556,6 +36556,104 @@ var VScrollBar=(function(_super){
 
 
 /**
+*使用 <code>VSlider</code> 控件，用户可以通过在滑块轨道的终点之间移动滑块来选择值。
+*<p> <code>VSlider</code> 控件采用垂直方向。滑块轨道从下往上扩展，而标签位于轨道的左右两侧。</p>
+*
+*@example <caption>以下示例代码，创建了一个 <code>VSlider</code> 实例。</caption>
+*package
+*{
+	*import laya.ui.HSlider;
+	*import laya.ui.VSlider;
+	*import laya.utils.Handler;
+	*public class VSlider_Example
+	*{
+		*private var vSlider:VSlider;
+		*public function VSlider_Example()
+		*{
+			*Laya.init(640,800);//设置游戏画布宽高。
+			*Laya.stage.bgColor="#efefef";//设置画布的背景颜色。
+			*Laya.loader.load(["resource/ui/vslider.png","resource/ui/vslider$bar.png"],Handler.create(this,onLoadComplete));//加载资源。
+			*}
+		*private function onLoadComplete():void
+		*{
+			*vSlider=new VSlider();//创建一个 VSlider 类的实例对象 vSlider 。
+			*vSlider.skin="resource/ui/vslider.png";//设置 vSlider 的皮肤。
+			*vSlider.min=0;//设置 vSlider 最低位置值。
+			*vSlider.max=10;//设置 vSlider 最高位置值。
+			*vSlider.value=2;//设置 vSlider 当前位置值。
+			*vSlider.tick=1;//设置 vSlider 刻度值。
+			*vSlider.x=100;//设置 vSlider 对象的属性 x 的值，用于控制 vSlider 对象的显示位置。
+			*vSlider.y=100;//设置 vSlider 对象的属性 y 的值，用于控制 vSlider 对象的显示位置。
+			*vSlider.changeHandler=new Handler(this,onChange);//设置 vSlider 位置变化处理器。
+			*Laya.stage.addChild(vSlider);//把 vSlider 添加到显示列表。
+			*}
+		*private function onChange(value:Number):void
+		*{
+			*trace("滑块的位置： value="+value);
+			*}
+		*}
+	*}
+*@example
+*Laya.init(640,800);//设置游戏画布宽高
+*Laya.stage.bgColor="#efefef";//设置画布的背景颜色
+*var vSlider;
+*Laya.loader.load(["resource/ui/vslider.png","resource/ui/vslider$bar.png"],laya.utils.Handler.create(this,onLoadComplete));//加载资源。
+*function onLoadComplete(){
+	*vSlider=new laya.ui.VSlider();//创建一个 VSlider 类的实例对象 vSlider 。
+	*vSlider.skin="resource/ui/vslider.png";//设置 vSlider 的皮肤。
+	*vSlider.min=0;//设置 vSlider 最低位置值。
+	*vSlider.max=10;//设置 vSlider 最高位置值。
+	*vSlider.value=2;//设置 vSlider 当前位置值。
+	*vSlider.tick=1;//设置 vSlider 刻度值。
+	*vSlider.x=100;//设置 vSlider 对象的属性 x 的值，用于控制 vSlider 对象的显示位置。
+	*vSlider.y=100;//设置 vSlider 对象的属性 y 的值，用于控制 vSlider 对象的显示位置。
+	*vSlider.changeHandler=new laya.utils.Handler(this,onChange);//设置 vSlider 位置变化处理器。
+	*Laya.stage.addChild(vSlider);//把 vSlider 添加到显示列表。
+	*}
+*function onChange(value){
+	*console.log("滑块的位置： value="+value);
+	*}
+*@example
+*import HSlider=laya.ui.HSlider;
+*import VSlider=laya.ui.VSlider;
+*import Handler=laya.utils.Handler;
+*class VSlider_Example {
+	*private vSlider:VSlider;
+	*constructor(){
+		*Laya.init(640,800);//设置游戏画布宽高。
+		*Laya.stage.bgColor="#efefef";//设置画布的背景颜色。
+		*Laya.loader.load(["resource/ui/vslider.png","resource/ui/vslider$bar.png"],Handler.create(this,this.onLoadComplete));//加载资源。
+		*}
+	*private onLoadComplete():void {
+		*this.vSlider=new VSlider();//创建一个 VSlider 类的实例对象 vSlider 。
+		*this.vSlider.skin="resource/ui/vslider.png";//设置 vSlider 的皮肤。
+		*this.vSlider.min=0;//设置 vSlider 最低位置值。
+		*this.vSlider.max=10;//设置 vSlider 最高位置值。
+		*this.vSlider.value=2;//设置 vSlider 当前位置值。
+		*this.vSlider.tick=1;//设置 vSlider 刻度值。
+		*this.vSlider.x=100;//设置 vSlider 对象的属性 x 的值，用于控制 vSlider 对象的显示位置。
+		*this.vSlider.y=100;//设置 vSlider 对象的属性 y 的值，用于控制 vSlider 对象的显示位置。
+		*this.vSlider.changeHandler=new Handler(this,this.onChange);//设置 vSlider 位置变化处理器。
+		*Laya.stage.addChild(this.vSlider);//把 vSlider 添加到显示列表。
+		*}
+	*private onChange(value:number):void {
+		*console.log("滑块的位置： value="+value);
+		*}
+	*}
+*@see laya.ui.Slider
+*/
+//class laya.ui.VSlider extends laya.ui.Slider
+var VSlider=(function(_super){
+	function VSlider(){
+		VSlider.__super.call(this);;
+	}
+
+	__class(VSlider,'laya.ui.VSlider',_super);
+	return VSlider;
+})(Slider)
+
+
+/**
 *<code>TextInput</code> 类用于创建显示对象以显示和输入文本。
 *
 *@example <caption>以下示例代码，创建了一个 <code>TextInput</code> 实例。</caption>
@@ -36878,104 +36976,6 @@ var TextInput=(function(_super){
 
 	return TextInput;
 })(Label)
-
-
-/**
-*使用 <code>VSlider</code> 控件，用户可以通过在滑块轨道的终点之间移动滑块来选择值。
-*<p> <code>VSlider</code> 控件采用垂直方向。滑块轨道从下往上扩展，而标签位于轨道的左右两侧。</p>
-*
-*@example <caption>以下示例代码，创建了一个 <code>VSlider</code> 实例。</caption>
-*package
-*{
-	*import laya.ui.HSlider;
-	*import laya.ui.VSlider;
-	*import laya.utils.Handler;
-	*public class VSlider_Example
-	*{
-		*private var vSlider:VSlider;
-		*public function VSlider_Example()
-		*{
-			*Laya.init(640,800);//设置游戏画布宽高。
-			*Laya.stage.bgColor="#efefef";//设置画布的背景颜色。
-			*Laya.loader.load(["resource/ui/vslider.png","resource/ui/vslider$bar.png"],Handler.create(this,onLoadComplete));//加载资源。
-			*}
-		*private function onLoadComplete():void
-		*{
-			*vSlider=new VSlider();//创建一个 VSlider 类的实例对象 vSlider 。
-			*vSlider.skin="resource/ui/vslider.png";//设置 vSlider 的皮肤。
-			*vSlider.min=0;//设置 vSlider 最低位置值。
-			*vSlider.max=10;//设置 vSlider 最高位置值。
-			*vSlider.value=2;//设置 vSlider 当前位置值。
-			*vSlider.tick=1;//设置 vSlider 刻度值。
-			*vSlider.x=100;//设置 vSlider 对象的属性 x 的值，用于控制 vSlider 对象的显示位置。
-			*vSlider.y=100;//设置 vSlider 对象的属性 y 的值，用于控制 vSlider 对象的显示位置。
-			*vSlider.changeHandler=new Handler(this,onChange);//设置 vSlider 位置变化处理器。
-			*Laya.stage.addChild(vSlider);//把 vSlider 添加到显示列表。
-			*}
-		*private function onChange(value:Number):void
-		*{
-			*trace("滑块的位置： value="+value);
-			*}
-		*}
-	*}
-*@example
-*Laya.init(640,800);//设置游戏画布宽高
-*Laya.stage.bgColor="#efefef";//设置画布的背景颜色
-*var vSlider;
-*Laya.loader.load(["resource/ui/vslider.png","resource/ui/vslider$bar.png"],laya.utils.Handler.create(this,onLoadComplete));//加载资源。
-*function onLoadComplete(){
-	*vSlider=new laya.ui.VSlider();//创建一个 VSlider 类的实例对象 vSlider 。
-	*vSlider.skin="resource/ui/vslider.png";//设置 vSlider 的皮肤。
-	*vSlider.min=0;//设置 vSlider 最低位置值。
-	*vSlider.max=10;//设置 vSlider 最高位置值。
-	*vSlider.value=2;//设置 vSlider 当前位置值。
-	*vSlider.tick=1;//设置 vSlider 刻度值。
-	*vSlider.x=100;//设置 vSlider 对象的属性 x 的值，用于控制 vSlider 对象的显示位置。
-	*vSlider.y=100;//设置 vSlider 对象的属性 y 的值，用于控制 vSlider 对象的显示位置。
-	*vSlider.changeHandler=new laya.utils.Handler(this,onChange);//设置 vSlider 位置变化处理器。
-	*Laya.stage.addChild(vSlider);//把 vSlider 添加到显示列表。
-	*}
-*function onChange(value){
-	*console.log("滑块的位置： value="+value);
-	*}
-*@example
-*import HSlider=laya.ui.HSlider;
-*import VSlider=laya.ui.VSlider;
-*import Handler=laya.utils.Handler;
-*class VSlider_Example {
-	*private vSlider:VSlider;
-	*constructor(){
-		*Laya.init(640,800);//设置游戏画布宽高。
-		*Laya.stage.bgColor="#efefef";//设置画布的背景颜色。
-		*Laya.loader.load(["resource/ui/vslider.png","resource/ui/vslider$bar.png"],Handler.create(this,this.onLoadComplete));//加载资源。
-		*}
-	*private onLoadComplete():void {
-		*this.vSlider=new VSlider();//创建一个 VSlider 类的实例对象 vSlider 。
-		*this.vSlider.skin="resource/ui/vslider.png";//设置 vSlider 的皮肤。
-		*this.vSlider.min=0;//设置 vSlider 最低位置值。
-		*this.vSlider.max=10;//设置 vSlider 最高位置值。
-		*this.vSlider.value=2;//设置 vSlider 当前位置值。
-		*this.vSlider.tick=1;//设置 vSlider 刻度值。
-		*this.vSlider.x=100;//设置 vSlider 对象的属性 x 的值，用于控制 vSlider 对象的显示位置。
-		*this.vSlider.y=100;//设置 vSlider 对象的属性 y 的值，用于控制 vSlider 对象的显示位置。
-		*this.vSlider.changeHandler=new Handler(this,this.onChange);//设置 vSlider 位置变化处理器。
-		*Laya.stage.addChild(this.vSlider);//把 vSlider 添加到显示列表。
-		*}
-	*private onChange(value:number):void {
-		*console.log("滑块的位置： value="+value);
-		*}
-	*}
-*@see laya.ui.Slider
-*/
-//class laya.ui.VSlider extends laya.ui.Slider
-var VSlider=(function(_super){
-	function VSlider(){
-		VSlider.__super.call(this);;
-	}
-
-	__class(VSlider,'laya.ui.VSlider',_super);
-	return VSlider;
-})(Slider)
 
 
 /**
@@ -37780,6 +37780,30 @@ var GameUI=(function(_super){
 		this.btn_1=null;
 		this.fruit_1_t=null;
 		this.fruit_1_o=null;
+		this.pos_0=null;
+		this.pos_1=null;
+		this.pos_2=null;
+		this.pos_3=null;
+		this.pos_4=null;
+		this.pos_5=null;
+		this.pos_6=null;
+		this.pos_7=null;
+		this.pos_8=null;
+		this.pos_9=null;
+		this.pos_10=null;
+		this.pos_11=null;
+		this.pos_12=null;
+		this.pos_13=null;
+		this.pos_14=null;
+		this.pos_15=null;
+		this.pos_16=null;
+		this.pos_17=null;
+		this.pos_18=null;
+		this.pos_19=null;
+		this.pos_20=null;
+		this.pos_21=null;
+		this.pos_22=null;
+		this.pos_23=null;
 		GameUI.__super.call(this);
 	}
 
@@ -37790,7 +37814,7 @@ var GameUI=(function(_super){
 		this.createView(GameUI.uiView);
 	}
 
-	GameUI.uiView={"type":"View","props":{"y":0,"x":0,"width":720,"height":1280},"child":[{"type":"Image","props":{"y":195,"x":119,"skin":"gameUI/slotmachine.png"}},{"type":"Button","props":{"y":718,"x":484,"width":95,"var":"btn_go","stateNum":2,"skin":"gameUI/go.png","height":49}},{"type":"Box","props":{"y":775,"x":124},"child":[{"type":"Button","props":{"y":28,"width":68,"var":"btn_8","stateNum":2,"skin":"gameUI/b8.png","height":77}},{"type":"Image","props":{"x":27,"width":15,"var":"fruit_8_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":47,"width":15,"var":"fruit_8_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":178},"child":[{"type":"Button","props":{"y":27,"width":66,"var":"btn_7","stateNum":2,"skin":"gameUI/b7.png","name":"fruit_7","height":77}},{"type":"Image","props":{"x":28,"width":15,"var":"fruit_7_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":47,"width":15,"var":"fruit_7_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":234},"child":[{"type":"Button","props":{"y":28,"width":60,"var":"btn_6","stateNum":2,"skin":"gameUI/b6.png","name":"fruit_6","height":76}},{"type":"Image","props":{"x":22,"width":15,"var":"fruit_6_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"y":1,"x":43,"width":15,"var":"fruit_6_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":292},"child":[{"type":"Button","props":{"y":28,"x":2,"width":55,"var":"btn_5","stateNum":2,"skin":"gameUI/b5.png","name":"fruit_5","height":75}},{"type":"Image","props":{"y":1,"x":18,"width":15,"var":"fruit_5_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":37,"width":15,"var":"fruit_5_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":425,"x":276,"var":"point"},"child":[{"type":"Image","props":{"width":190,"var":"point_panel","skin":"gameUI/slotmachine-1.png","height":103}},{"type":"Box","props":{"y":26,"x":18},"child":[{"type":"Image","props":{"var":"point_thousand","skin":"gameUI/points0.png"}},{"type":"Image","props":{"x":38,"var":"point_hundred","skin":"gameUI/points0.png"}},{"type":"Image","props":{"x":78,"var":"point_ten","skin":"gameUI/points0.png"}},{"type":"Image","props":{"x":118,"width":39,"var":"point_one","skin":"gameUI/points0.png","height":58}}]}]},{"type":"Box","props":{"y":776,"x":359},"child":[{"type":"Button","props":{"y":29,"width":55,"var":"btn_4","stateNum":2,"skin":"gameUI/b4.png","name":"fruit_4","height":76}},{"type":"Image","props":{"y":1,"x":13,"width":15,"var":"fruit_4_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":34,"width":15,"var":"fruit_4_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":777,"x":415},"child":[{"type":"Button","props":{"y":28,"width":60,"var":"btn_3","stateNum":2,"skin":"gameUI/b3.png","name":"fruit_3","height":76}},{"type":"Image","props":{"x":12,"width":15,"var":"fruit_3_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":30,"width":15,"var":"fruit_3_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":469},"child":[{"type":"Button","props":{"y":29,"width":64,"var":"btn_2","stateNum":2,"skin":"gameUI/b2.png","name":"fruit_2","height":77}},{"type":"Image","props":{"x":8,"width":15,"var":"fruit_2_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"y":1,"x":27,"width":15,"var":"fruit_2_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":777,"x":524},"child":[{"type":"Button","props":{"y":28,"width":68,"var":"btn_1","stateNum":2,"skin":"gameUI/b1.png","name":"fruit_1","height":75}},{"type":"Image","props":{"x":6,"width":15,"var":"fruit_1_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":26,"width":15,"var":"fruit_1_o","skin":"gameUI/num0.png","height":24}}]}]};
+	GameUI.uiView={"type":"View","props":{"y":0,"x":0,"width":720,"height":1280},"child":[{"type":"Image","props":{"y":195,"x":119,"skin":"gameUI/slotmachine.png"}},{"type":"Button","props":{"y":718,"x":484,"width":95,"var":"btn_go","stateNum":2,"skin":"gameUI/go.png","height":49}},{"type":"Box","props":{"y":775,"x":124},"child":[{"type":"Button","props":{"y":28,"width":68,"var":"btn_8","stateNum":2,"skin":"gameUI/b8.png","height":77}},{"type":"Image","props":{"x":27,"width":15,"var":"fruit_8_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":47,"width":15,"var":"fruit_8_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":178},"child":[{"type":"Button","props":{"y":27,"width":66,"var":"btn_7","stateNum":2,"skin":"gameUI/b7.png","name":"fruit_7","height":77}},{"type":"Image","props":{"x":28,"width":15,"var":"fruit_7_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":47,"width":15,"var":"fruit_7_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":234},"child":[{"type":"Button","props":{"y":28,"width":60,"var":"btn_6","stateNum":2,"skin":"gameUI/b6.png","name":"fruit_6","height":76}},{"type":"Image","props":{"x":22,"width":15,"var":"fruit_6_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"y":1,"x":43,"width":15,"var":"fruit_6_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":292},"child":[{"type":"Button","props":{"y":28,"x":2,"width":55,"var":"btn_5","stateNum":2,"skin":"gameUI/b5.png","name":"fruit_5","height":75}},{"type":"Image","props":{"y":1,"x":18,"width":15,"var":"fruit_5_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":37,"width":15,"var":"fruit_5_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":425,"x":276,"var":"point"},"child":[{"type":"Image","props":{"width":190,"var":"point_panel","skin":"gameUI/slotmachine-1.png","height":103}},{"type":"Box","props":{"y":26,"x":18},"child":[{"type":"Image","props":{"var":"point_thousand","skin":"gameUI/points0.png"}},{"type":"Image","props":{"x":38,"var":"point_hundred","skin":"gameUI/points0.png"}},{"type":"Image","props":{"x":78,"var":"point_ten","skin":"gameUI/points0.png"}},{"type":"Image","props":{"x":118,"width":39,"var":"point_one","skin":"gameUI/points0.png","height":58}}]}]},{"type":"Box","props":{"y":776,"x":359},"child":[{"type":"Button","props":{"y":29,"width":55,"var":"btn_4","stateNum":2,"skin":"gameUI/b4.png","name":"fruit_4","height":76}},{"type":"Image","props":{"y":1,"x":13,"width":15,"var":"fruit_4_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":34,"width":15,"var":"fruit_4_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":777,"x":415},"child":[{"type":"Button","props":{"y":28,"width":60,"var":"btn_3","stateNum":2,"skin":"gameUI/b3.png","name":"fruit_3","height":76}},{"type":"Image","props":{"x":12,"width":15,"var":"fruit_3_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":30,"width":15,"var":"fruit_3_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":469},"child":[{"type":"Button","props":{"y":29,"width":64,"var":"btn_2","stateNum":2,"skin":"gameUI/b2.png","name":"fruit_2","height":77}},{"type":"Image","props":{"x":8,"width":15,"var":"fruit_2_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"y":1,"x":27,"width":15,"var":"fruit_2_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":777,"x":524},"child":[{"type":"Button","props":{"y":28,"width":68,"var":"btn_1","stateNum":2,"skin":"gameUI/b1.png","name":"fruit_1","height":75}},{"type":"Image","props":{"x":6,"width":15,"var":"fruit_1_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":26,"width":15,"var":"fruit_1_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":201,"x":152},"child":[{"type":"Image","props":{"y":172,"x":345,"width":68,"var":"pos_0","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":115,"x":345,"width":68,"var":"pos_1","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":57,"x":345,"width":68,"var":"pos_2","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":345,"width":68,"var":"pos_3","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":287,"width":68,"var":"pos_4","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":233,"width":68,"var":"pos_5","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":176,"width":68,"var":"pos_6","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":116,"width":68,"var":"pos_7","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":60,"width":68,"var":"pos_8","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"width":68,"var":"pos_9","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":57,"width":68,"var":"pos_10","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":115,"width":68,"var":"pos_11","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":172,"width":68,"var":"pos_12","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":229,"width":68,"var":"pos_13","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":285,"x":0,"width":68,"var":"pos_14","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":0,"width":68,"var":"pos_15","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":60,"width":68,"var":"pos_16","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":116,"width":68,"var":"pos_17","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":176,"width":68,"var":"pos_18","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":233,"width":68,"var":"pos_19","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":287,"width":68,"var":"pos_20","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":345,"width":68,"var":"pos_21","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":285,"x":345,"width":68,"var":"pos_22","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":229,"x":345,"width":68,"var":"pos_23","skin":"gameUI/purpleBox.png","height":68}}]}]};
 	return GameUI;
 })(View)
 
@@ -38333,7 +38357,81 @@ var Game=(function(_super){
 		this.fruit_6=0;
 		this.fruit_7=0;
 		this.fruit_8=0;
+		/**每种水果对应位置***/
+		this.fruit_pos=[
+		[ this.pos_5 ,this.pos_11 ,this.pos_17 ,this.pos_23] ,
+		[ this.pos_4] ,
+		[ this.pos_9 ,this.pos_21] ,
+		[ this.pos_22] ,
+		[ this.pos_3 ,this.pos_15] ,
+		[ this.pos_16] ,
+		[ this.pos_8 ,this.pos_20] ,
+		[ this.pos_10] ,
+		[ this.pos_2] ,
+		[ this.pos_1] ,
+		[ this.pos_14] ,
+		[ this.pos_13] ,
+		[ this.pos_18] ,
+		[ this.pos_19] ,
+		[ this.pos_7] ,
+		[ this.pos_6] ,
+		[ this.pos_0 ,this.pos_12],];
+		/**每种水果对应位置编号***/
+		this.fruit_posnum=[
+		[ 5 ,11 ,17 ,23] ,
+		[ 4] ,
+		[ 9 ,21] ,
+		[ 22] ,
+		[ 3 ,15] ,
+		[ 16] ,
+		[ 8 ,20] ,
+		[ 10] ,
+		[ 2] ,
+		[ 1] ,
+		[ 14] ,
+		[ 13] ,
+		[ 18] ,
+		[ 19] ,
+		[ 7] ,
+		[ 6] ,
+		[ 0 ,12],];
+		/**时间间隔***/
+		this.runInterval_fast=25;
+		this.runInterval_middle=100;
+		this.runInterval_slow=300;
+		this.runTime=25;
+		/**次数***/
+		this.randPos=0;
+		/**当前位置***/
+		this.curPos=null;
+		/***当前位置编号***/
+		this.curPosNum=0;
 		Game.__super.call(this);
+		this.prePos=this.pos_0;
+		this.pos_0.visible=false;
+		this.pos_1.visible=false;
+		this.pos_2.visible=false;
+		this.pos_3.visible=false;
+		this.pos_4.visible=false;
+		this.pos_5.visible=false;
+		this.pos_6.visible=false;
+		this.pos_7.visible=false;
+		this.pos_8.visible=false;
+		this.pos_9.visible=false;
+		this.pos_10.visible=false;
+		this.pos_11.visible=false;
+		this.pos_12.visible=false;
+		this.pos_13.visible=false;
+		this.pos_14.visible=false;
+		this.pos_15.visible=false;
+		this.pos_16.visible=false;
+		this.pos_17.visible=false;
+		this.pos_18.visible=false;
+		this.pos_19.visible=false;
+		this.pos_20.visible=false;
+		this.pos_21.visible=false;
+		this.pos_22.visible=false;
+		this.pos_23.visible=false;
 		this.btn_go.on ("mousedown" ,this ,this.onStart);
 		this.btn_1.on ("mousedown" ,this ,this.onFruit ,[ 'fruit_1']);
 		this.btn_2.on ("mousedown" ,this ,this.onFruit ,[ 'fruit_2']);
@@ -38350,11 +38448,17 @@ var Game=(function(_super){
 	__proto.onStart=function(){
 		if (this.state==false){
 			console.log ("开始游戏");
-			this.state=true;
+			this.curPosNum=0;
+			this.randPos=this.randomPos ();
+			Laya.timer.frameLoop (1 ,this ,this.loop);
 		}
 		else{
 			console.log ("正在游戏中");
 		}
+	}
+
+	__proto.loop=function(){
+		this.runCircle ();
 	}
 
 	__proto.onFruit=function(fruit){
@@ -38439,15 +38543,171 @@ var Game=(function(_super){
 	*
 	*/
 	__proto.randomPos=function(){
-		var randnum=Math.random ();
+		var randnum=Math.round (Math.random ()*140);
+		var circleNum=Math.round (Math.random ()*1)+2;
+		var pos=circleNum *24;
+		var index=0;
+		if (randnum==1){
+			pos+=this.fruit_posnum[ 15][ 0];
+		}
+		else if (randnum==2){
+			pos+=this.fruit_posnum[ 14][ 0];
+		}
+		else if (randnum >=3 && randnum <=5){
+			pos+=this.fruit_posnum[ 13][ 0];
+		}
+		else if (randnum >=6 && randnum <=8){
+			pos+=this.fruit_posnum[ 12][ 0];
+		}
+		else if (randnum >=9 && randnum <=12){
+			pos+=this.fruit_posnum[ 11][ 0];
+		}
+		else if (randnum >=13 && randnum <=16){
+			pos+=this.fruit_posnum[ 10][ 0];
+		}
+		else if (randnum >=17 && randnum <=22){
+			pos+=this.fruit_posnum[ 9][ 0];
+		}
+		else if (randnum >=23 && randnum <=28){
+			pos+=this.fruit_posnum[ 8][ 0];
+		}
+		else if (randnum >=29 && randnum <=36){
+			pos+=this.fruit_posnum[ 7][ 0];
+		}
+		else if (randnum >=37 && randnum <=44){
+			index=Math.round (Math.random ()*(this.fruit_posnum[ 6].length-1));
+			pos+=this.fruit_posnum[ 6][ 0];
+		}
+		else if (randnum >=45 && randnum <=56){
+			pos+=this.fruit_posnum[ 5][ 0];
+		}
+		else if (randnum >=57 && randnum <=68){
+			index=Math.round (Math.random ()*(this.fruit_posnum[ 4].length-1));
+			pos+=this.fruit_posnum[ 4][ 0];
+		}
+		else if (randnum >=69 && randnum <=80){
+			pos+=this.fruit_posnum[ 3][ 0];
+		}
+		else if (randnum >=81 && randnum <=92){
+			index=Math.round (Math.random ()*(this.fruit_posnum[ 2].length-1));
+			pos+=this.fruit_posnum[ 2][ 0];
+		}
+		else if (randnum >=93 && randnum <=116){
+			pos+=this.fruit_posnum[ 1][ 0];
+		}
+		else if (randnum >=117 && randnum <=140){
+			index=Math.round (Math.random ()*(this.fruit_posnum[ 0].length-1));
+			pos+=this.fruit_posnum[ 0][ 0];
+		}
+		return pos;
 	}
 
-	__proto.runCircle=function(){}
+	__proto.runCircle=function(){
+		if (this.curPosNum > this.randPos){
+			Laya.timer.clear (this ,this.loop);
+		};
+		var time=Browser.now ();
+		if (time > this.runTime){
+			if (this.curPosNum < this.randPos *0.5){
+				this.runTime=time+this.runInterval_fast;
+			}
+			else if (this.curPosNum < this.randPos *0.75){
+				this.runTime=time+this.runInterval_middle;
+			}
+			else{
+				this.runTime=time+this.runInterval_slow;
+			}
+			this.prePos.visible=false;
+			this.curPos=this.num2pos (this.curPosNum % 24);
+			this.curPos.visible=true;
+			this.prePos=this.curPos;
+			this.curPosNum++;
+		}
+	}
+
+	__proto.num2pos=function(num){
+		switch (num){
+			case 0:{
+					return this.pos_0;
+				}
+			case 1:{
+					return this.pos_1;
+				}
+			case 2:{
+					return this.pos_2;
+				}
+			case 3:{
+					return this.pos_3;
+				}
+			case 4:{
+					return this.pos_4;
+				}
+			case 5:{
+					return this.pos_5;
+				}
+			case 6:{
+					return this.pos_6;
+				}
+			case 7:{
+					return this.pos_7;
+				}
+			case 8:{
+					return this.pos_8;
+				}
+			case 9:{
+					return this.pos_9;
+				}
+			case 10:{
+					return this.pos_10;
+				}
+			case 11:{
+					return this.pos_11;
+				}
+			case 12:{
+					return this.pos_12;
+				}
+			case 13:{
+					return this.pos_13;
+				}
+			case 14:{
+					return this.pos_14;
+				}
+			case 15:{
+					return this.pos_15;
+				}
+			case 16:{
+					return this.pos_16;
+				}
+			case 17:{
+					return this.pos_17;
+				}
+			case 18:{
+					return this.pos_18;
+				}
+			case 19:{
+					return this.pos_19;
+				}
+			case 20:{
+					return this.pos_20;
+				}
+			case 21:{
+					return this.pos_21;
+				}
+			case 22:{
+					return this.pos_22;
+				}
+			case 23:{
+					return this.pos_23;
+				}
+			}
+		return null;
+	}
+
 	return Game;
 })(GameUI)
 
 
-	Laya.__init([EventDispatcher,LoaderManager,Render,DrawText,Browser,View,WebGLContext2D,ShaderCompile,Timer,GraphicAnimation,LocalStorage,AtlasGrid]);
+	Laya.__init([LoaderManager,EventDispatcher,Render,DrawText,View,Browser,WebGLContext2D,ShaderCompile,Timer,GraphicAnimation,LocalStorage,AtlasGrid]);
 	/**LayaGameStart**/
 	new Main();
 

@@ -46172,6 +46172,7 @@ var GameUI=(function(_super){
 		this.pos_21=null;
 		this.pos_22=null;
 		this.pos_23=null;
+		this.btn_coin=null;
 		GameUI.__super.call(this);
 	}
 
@@ -46182,7 +46183,7 @@ var GameUI=(function(_super){
 		this.createView(GameUI.uiView);
 	}
 
-	GameUI.uiView={"type":"View","props":{"y":0,"x":0,"width":720,"height":1280},"child":[{"type":"Image","props":{"y":195,"x":119,"skin":"gameUI/slotmachine.png"}},{"type":"Button","props":{"y":718,"x":484,"width":95,"var":"btn_go","stateNum":2,"skin":"gameUI/go.png","height":49}},{"type":"Box","props":{"y":775,"x":124},"child":[{"type":"Button","props":{"y":28,"width":68,"var":"btn_8","stateNum":2,"skin":"gameUI/b8.png","height":77}},{"type":"Image","props":{"x":27,"width":15,"var":"fruit_8_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":47,"width":15,"var":"fruit_8_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":178},"child":[{"type":"Button","props":{"y":27,"width":66,"var":"btn_7","stateNum":2,"skin":"gameUI/b7.png","name":"fruit_7","height":77}},{"type":"Image","props":{"x":28,"width":15,"var":"fruit_7_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":47,"width":15,"var":"fruit_7_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":234},"child":[{"type":"Button","props":{"y":28,"width":60,"var":"btn_6","stateNum":2,"skin":"gameUI/b6.png","name":"fruit_6","height":76}},{"type":"Image","props":{"x":22,"width":15,"var":"fruit_6_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"y":1,"x":43,"width":15,"var":"fruit_6_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":292},"child":[{"type":"Button","props":{"y":28,"x":2,"width":55,"var":"btn_5","stateNum":2,"skin":"gameUI/b5.png","name":"fruit_5","height":75}},{"type":"Image","props":{"y":1,"x":18,"width":15,"var":"fruit_5_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":37,"width":15,"var":"fruit_5_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":425,"x":276,"var":"point"},"child":[{"type":"Image","props":{"width":190,"var":"point_panel","skin":"gameUI/slotmachine-1.png","height":103}},{"type":"Box","props":{"y":26,"x":18},"child":[{"type":"Image","props":{"var":"point_thousand","skin":"gameUI/points0.png"}},{"type":"Image","props":{"x":38,"var":"point_hundred","skin":"gameUI/points0.png"}},{"type":"Image","props":{"x":78,"var":"point_ten","skin":"gameUI/points0.png"}},{"type":"Image","props":{"x":118,"width":39,"var":"point_one","skin":"gameUI/points0.png","height":58}}]}]},{"type":"Box","props":{"y":776,"x":359},"child":[{"type":"Button","props":{"y":29,"width":55,"var":"btn_4","stateNum":2,"skin":"gameUI/b4.png","name":"fruit_4","height":76}},{"type":"Image","props":{"y":1,"x":13,"width":15,"var":"fruit_4_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":34,"width":15,"var":"fruit_4_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":777,"x":415},"child":[{"type":"Button","props":{"y":28,"width":60,"var":"btn_3","stateNum":2,"skin":"gameUI/b3.png","name":"fruit_3","height":76}},{"type":"Image","props":{"x":12,"width":15,"var":"fruit_3_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":30,"width":15,"var":"fruit_3_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":469},"child":[{"type":"Button","props":{"y":29,"width":64,"var":"btn_2","stateNum":2,"skin":"gameUI/b2.png","name":"fruit_2","height":77}},{"type":"Image","props":{"x":8,"width":15,"var":"fruit_2_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"y":1,"x":27,"width":15,"var":"fruit_2_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":777,"x":524},"child":[{"type":"Button","props":{"y":28,"width":68,"var":"btn_1","stateNum":2,"skin":"gameUI/b1.png","name":"fruit_1","height":75}},{"type":"Image","props":{"x":6,"width":15,"var":"fruit_1_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":26,"width":15,"var":"fruit_1_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":201,"x":152},"child":[{"type":"Image","props":{"y":172,"x":345,"width":68,"var":"pos_0","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":115,"x":345,"width":68,"var":"pos_1","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":57,"x":345,"width":68,"var":"pos_2","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":345,"width":68,"var":"pos_3","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":287,"width":68,"var":"pos_4","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":233,"width":68,"var":"pos_5","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":176,"width":68,"var":"pos_6","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":116,"width":68,"var":"pos_7","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":60,"width":68,"var":"pos_8","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"width":68,"var":"pos_9","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":57,"width":68,"var":"pos_10","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":115,"width":68,"var":"pos_11","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":172,"width":68,"var":"pos_12","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":229,"width":68,"var":"pos_13","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":285,"x":0,"width":68,"var":"pos_14","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":0,"width":68,"var":"pos_15","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":60,"width":68,"var":"pos_16","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":116,"width":68,"var":"pos_17","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":176,"width":68,"var":"pos_18","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":233,"width":68,"var":"pos_19","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":287,"width":68,"var":"pos_20","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":345,"width":68,"var":"pos_21","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":285,"x":345,"width":68,"var":"pos_22","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":229,"x":345,"width":68,"var":"pos_23","skin":"gameUI/purpleBox.png","height":68}}]}]};
+	GameUI.uiView={"type":"View","props":{"y":0,"x":0,"width":720,"height":1280},"child":[{"type":"Image","props":{"y":195,"x":119,"skin":"gameUI/slotmachine.png"}},{"type":"Button","props":{"y":718,"x":484,"width":95,"var":"btn_go","stateNum":2,"skin":"gameUI/go.png","height":49}},{"type":"Box","props":{"y":775,"x":124},"child":[{"type":"Button","props":{"y":28,"width":68,"var":"btn_8","stateNum":2,"skin":"gameUI/b8.png","height":77}},{"type":"Image","props":{"x":27,"width":15,"var":"fruit_8_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":47,"width":15,"var":"fruit_8_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":178},"child":[{"type":"Button","props":{"y":27,"width":66,"var":"btn_7","stateNum":2,"skin":"gameUI/b7.png","name":"fruit_7","height":77}},{"type":"Image","props":{"x":28,"width":15,"var":"fruit_7_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":47,"width":15,"var":"fruit_7_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":234},"child":[{"type":"Button","props":{"y":28,"width":60,"var":"btn_6","stateNum":2,"skin":"gameUI/b6.png","name":"fruit_6","height":76}},{"type":"Image","props":{"x":22,"width":15,"var":"fruit_6_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"y":1,"x":43,"width":15,"var":"fruit_6_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":292},"child":[{"type":"Button","props":{"y":28,"x":2,"width":55,"var":"btn_5","stateNum":2,"skin":"gameUI/b5.png","name":"fruit_5","height":75}},{"type":"Image","props":{"y":1,"x":18,"width":15,"var":"fruit_5_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":37,"width":15,"var":"fruit_5_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":425,"x":276,"var":"point"},"child":[{"type":"Image","props":{"width":190,"var":"point_panel","skin":"gameUI/slotmachine-1.png","height":103}},{"type":"Box","props":{"y":26,"x":18},"child":[{"type":"Image","props":{"var":"point_thousand","skin":"gameUI/points0.png"}},{"type":"Image","props":{"x":38,"var":"point_hundred","skin":"gameUI/points0.png"}},{"type":"Image","props":{"x":78,"var":"point_ten","skin":"gameUI/points0.png"}},{"type":"Image","props":{"x":118,"width":39,"var":"point_one","skin":"gameUI/points0.png","height":58}}]}]},{"type":"Box","props":{"y":776,"x":359},"child":[{"type":"Button","props":{"y":29,"width":55,"var":"btn_4","stateNum":2,"skin":"gameUI/b4.png","name":"fruit_4","height":76}},{"type":"Image","props":{"y":1,"x":13,"width":15,"var":"fruit_4_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":34,"width":15,"var":"fruit_4_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":777,"x":415},"child":[{"type":"Button","props":{"y":28,"width":60,"var":"btn_3","stateNum":2,"skin":"gameUI/b3.png","name":"fruit_3","height":76}},{"type":"Image","props":{"x":12,"width":15,"var":"fruit_3_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":30,"width":15,"var":"fruit_3_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":776,"x":469},"child":[{"type":"Button","props":{"y":29,"width":64,"var":"btn_2","stateNum":2,"skin":"gameUI/b2.png","name":"fruit_2","height":77}},{"type":"Image","props":{"x":8,"width":15,"var":"fruit_2_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"y":1,"x":27,"width":15,"var":"fruit_2_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":777,"x":524},"child":[{"type":"Button","props":{"y":28,"width":68,"var":"btn_1","stateNum":2,"skin":"gameUI/b1.png","name":"fruit_1","height":75}},{"type":"Image","props":{"x":6,"width":15,"var":"fruit_1_t","skin":"gameUI/num0.png","height":24}},{"type":"Image","props":{"x":26,"width":15,"var":"fruit_1_o","skin":"gameUI/num0.png","height":24}}]},{"type":"Box","props":{"y":201,"x":152},"child":[{"type":"Image","props":{"y":172,"x":345,"width":68,"var":"pos_0","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":115,"x":345,"width":68,"var":"pos_1","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":57,"x":345,"width":68,"var":"pos_2","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":345,"width":68,"var":"pos_3","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":287,"width":68,"var":"pos_4","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":233,"width":68,"var":"pos_5","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":176,"width":68,"var":"pos_6","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":116,"width":68,"var":"pos_7","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"x":60,"width":68,"var":"pos_8","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"width":68,"var":"pos_9","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":57,"width":68,"var":"pos_10","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":115,"width":68,"var":"pos_11","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":172,"width":68,"var":"pos_12","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":229,"width":68,"var":"pos_13","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":285,"x":0,"width":68,"var":"pos_14","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":0,"width":68,"var":"pos_15","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":60,"width":68,"var":"pos_16","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":116,"width":68,"var":"pos_17","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":176,"width":68,"var":"pos_18","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":233,"width":68,"var":"pos_19","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":287,"width":68,"var":"pos_20","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":343,"x":345,"width":68,"var":"pos_21","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":285,"x":345,"width":68,"var":"pos_22","skin":"gameUI/purpleBox.png","height":68}},{"type":"Image","props":{"y":229,"x":345,"width":68,"var":"pos_23","skin":"gameUI/purpleBox.png","height":68}}]},{"type":"Button","props":{"y":723,"x":365,"width":93,"var":"btn_coin","stateNum":2,"skin":"gameUI/slotmachine-1.png","height":36}}]};
 	return GameUI;
 })(View)
 
@@ -47407,6 +47408,7 @@ var Game=(function(_super){
 		this.on ("Complete" ,this ,this.runComplete);
 		this.total_score=0;
 		this.cur_score=0;
+		this.btn_coin.on ("mousedown" ,this ,this.onScore);
 		this.btn_1.on ("mousedown" ,this ,this.onFruit ,[ 'fruit_1']);
 		this.btn_2.on ("mousedown" ,this ,this.onFruit ,[ 'fruit_2']);
 		this.btn_3.on ("mousedown" ,this ,this.onFruit ,[ 'fruit_3']);
@@ -47419,6 +47421,12 @@ var Game=(function(_super){
 
 	__class(Game,'Game',_super);
 	var __proto=Game.prototype;
+	__proto.onScore=function(){
+		this.total_score+=10;
+		this.cur_score=this.total_score;
+		this.updateScoreUI (this.cur_score);
+	}
+
 	__proto.onStart=function(){
 		if (this.state==false){
 			console.log ("开始游戏");
@@ -47439,74 +47447,114 @@ var Game=(function(_super){
 		if (this.addOrdel==false){
 			switch (fruit){
 				case "fruit_1":{
-						if (this.fruitCount[ 0] < 99){
-							this.fruitCount[ 0]++;
-							this.fruitCount[ 1]=this.fruitCount[ 0];
-							this.fruit_1_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 0] / 10)+".png";
-							this.fruit_1_o.skin="gameUI/num"+this.fruitCount[ 0] % 10+".png";
+						if (this.total_score-5 >=0){
+							if (this.fruitCount[ 0] < 99){
+								this.fruitCount[ 0]++;
+								this.fruitCount[ 1]=this.fruitCount[ 0];
+								this.fruit_1_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 0] / 10)+".png";
+								this.fruit_1_o.skin="gameUI/num"+this.fruitCount[ 0] % 10+".png";
+								this.total_score-=5;
+								this.cur_score=this.total_score;
+								this.updateScoreUI (this.cur_score);
+							}
 						}
 						break ;
 					}
 				case "fruit_2":{
-						if (this.fruitCount[ 2] < 99){
-							this.fruitCount[ 2]++;
-							this.fruitCount[ 3]=this.fruitCount[ 2];
-							this.fruit_2_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 2] / 10)+".png";
-							this.fruit_2_o.skin="gameUI/num"+this.fruitCount[ 2] % 10+".png";
+						if (this.total_score-10 >=0){
+							if (this.fruitCount[ 2] < 99){
+								this.fruitCount[ 2]++;
+								this.fruitCount[ 3]=this.fruitCount[ 2];
+								this.fruit_2_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 2] / 10)+".png";
+								this.fruit_2_o.skin="gameUI/num"+this.fruitCount[ 2] % 10+".png";
+								this.total_score-=10;
+								this.cur_score=this.total_score;
+								this.updateScoreUI (this.cur_score);
+							}
 						}
 						break ;
 					}
 				case "fruit_3":{
-						if (this.fruitCount[ 4] < 99){
-							this.fruitCount[ 4]++;
-							this.fruitCount[ 5]=this.fruitCount[ 4];
-							this.fruit_3_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 4] / 10)+".png";
-							this.fruit_3_o.skin="gameUI/num"+this.fruitCount[ 4] % 10+".png";
+						if (this.total_score-10 >=0){
+							if (this.fruitCount[ 4] < 99){
+								this.fruitCount[ 4]++;
+								this.fruitCount[ 5]=this.fruitCount[ 4];
+								this.fruit_3_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 4] / 10)+".png";
+								this.fruit_3_o.skin="gameUI/num"+this.fruitCount[ 4] % 10+".png";
+								this.total_score-=10;
+								this.cur_score=this.total_score;
+								this.updateScoreUI (this.cur_score);
+							}
 						}
 						break ;
 					}
 				case "fruit_4":{
-						if (this.fruitCount[ 6] < 99){
-							this.fruitCount[ 6]++;
-							this.fruitCount[ 7]=this.fruitCount[ 6];
-							this.fruit_4_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 6] / 10)+".png";
-							this.fruit_4_o.skin="gameUI/num"+this.fruitCount[ 6] % 10+".png";
+						if (this.total_score-15 >=0){
+							if (this.fruitCount[ 6] < 99){
+								this.fruitCount[ 6]++;
+								this.fruitCount[ 7]=this.fruitCount[ 6];
+								this.fruit_4_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 6] / 10)+".png";
+								this.fruit_4_o.skin="gameUI/num"+this.fruitCount[ 6] % 10+".png";
+								this.total_score-=15;
+								this.cur_score=this.total_score;
+								this.updateScoreUI (this.cur_score);
+							}
 						}
 						break ;
 					}
 				case "fruit_5":{
-						if (this.fruitCount[ 8] < 99){
-							this.fruitCount[ 8]++;
-							this.fruitCount[ 9]=this.fruitCount[ 8];
-							this.fruit_5_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 8] / 10)+".png";
-							this.fruit_5_o.skin="gameUI/num"+this.fruitCount[ 8] % 10+".png";
+						if (this.total_score-20 >=0){
+							if (this.fruitCount[ 8] < 99){
+								this.fruitCount[ 8]++;
+								this.fruitCount[ 9]=this.fruitCount[ 8];
+								this.fruit_5_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 8] / 10)+".png";
+								this.fruit_5_o.skin="gameUI/num"+this.fruitCount[ 8] % 10+".png";
+								this.total_score-=20;
+								this.cur_score=this.total_score;
+								this.updateScoreUI (this.cur_score);
+							}
 						}
 						break ;
 					}
 				case "fruit_6":{
-						if (this.fruitCount[ 10] < 99){
-							this.fruitCount[ 10]++;
-							this.fruitCount[ 11]=this.fruitCount[ 10];
-							this.fruit_6_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 10] / 10)+".png";
-							this.fruit_6_o.skin="gameUI/num"+this.fruitCount[ 10] % 10+".png";
+						if (this.total_score-30 >=0){
+							if (this.fruitCount[ 10] < 99){
+								this.fruitCount[ 10]++;
+								this.fruitCount[ 11]=this.fruitCount[ 10];
+								this.fruit_6_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 10] / 10)+".png";
+								this.fruit_6_o.skin="gameUI/num"+this.fruitCount[ 10] % 10+".png";
+								this.total_score-=30;
+								this.cur_score=this.total_score;
+								this.updateScoreUI (this.cur_score);
+							}
 						}
 						break ;
 					}
 				case "fruit_7":{
-						if (this.fruitCount[ 12] < 99){
-							this.fruitCount[ 12]++;
-							this.fruitCount[ 13]=this.fruitCount[ 12];
-							this.fruit_7_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 12] / 10)+".png";
-							this.fruit_7_o.skin="gameUI/num"+this.fruitCount[ 12] % 10+".png";
+						if (this.total_score-40 >=0){
+							if (this.fruitCount[ 12] < 99){
+								this.fruitCount[ 12]++;
+								this.fruitCount[ 13]=this.fruitCount[ 12];
+								this.fruit_7_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 12] / 10)+".png";
+								this.fruit_7_o.skin="gameUI/num"+this.fruitCount[ 12] % 10+".png";
+								this.total_score-=40;
+								this.cur_score=this.total_score;
+								this.updateScoreUI (this.cur_score);
+							}
 						}
 						break ;
 					}
 				case "fruit_8":{
-						if (this.fruitCount[ 14] < 99){
-							this.fruitCount[ 14]++;
-							this.fruitCount[ 15]=this.fruitCount[ 14];
-							this.fruit_8_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 14] / 10)+".png";
-							this.fruit_8_o.skin="gameUI/num"+this.fruitCount[ 14] % 10+".png";
+						if (this.total_score-120 >=0){
+							if (this.fruitCount[ 14] < 99){
+								this.fruitCount[ 14]++;
+								this.fruitCount[ 15]=this.fruitCount[ 14];
+								this.fruit_8_t.skin="gameUI/num"+Math.floor (this.fruitCount[ 14] / 10)+".png";
+								this.fruit_8_o.skin="gameUI/num"+this.fruitCount[ 14] % 10+".png";
+								this.total_score-=120;
+								this.cur_score=this.total_score;
+								this.updateScoreUI (this.cur_score);
+							}
 						}
 						break ;
 					}

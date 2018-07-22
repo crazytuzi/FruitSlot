@@ -1,21 +1,18 @@
 package
 {
 
-	import laya.debug.tools.hook.VarHook;
 	import laya.events.Event;
-	import laya.ui.Button;
 	import laya.ui.Image;
 	import laya.utils.Browser;
-
 	import ui.GameUI;
 
 	public class Game extends GameUI
 	{
 		/**当前游戏状态***/
-		private var state:Boolean = false;
+		private var state:Boolean;
 
 		/**当前是增加还是减少***/
-		private var addOrdel:Boolean = false;
+		private var addOrdel:Boolean;
 
 		/**每种水果初始值***/
 		private var fruitCount:Array = [
@@ -60,23 +57,7 @@ package
 			0 //goodluck
 			];
 
-		private var fruit_1:int = 0;
-
-		private var fruit_2:int = 0;
-
-		private var fruit_3:int = 0;
-
-		private var fruit_4:int = 0;
-
-		private var fruit_5:int = 0;
-
-		private var fruit_6:int = 0;
-
-		private var fruit_7:int = 0;
-
-		private var fruit_8:int = 0;
-
-		/**每种水果对应位置***/
+		/**每种水果对应位置,未用到,待删除***/
 		private var fruit_pos:Array = [
 			[ this.pos_5 , this.pos_11 , this.pos_17 , this.pos_23 ] , //苹果
 			[ this.pos_4 ] , //苹果*3
@@ -118,25 +99,26 @@ package
 			[ 0 , 12 ], //goodluck
 			];
 
-		/**时间间隔***/
-		private var runInterval_fast:Number = 25;
+		/**跑圈时间间隔***/
+		private var circleInterval_fast:Number = 25;
 
-		private var runInterval_middle:Number = 100;
+		private var circleInterval_middle:Number = 100;
 
-		private var runInterval_slow:Number = 300;
+		private var circleInterval_slow:Number = 300;
 
-		private var runTime:Number = 25;
+		/**跑圈时间计时***/
+		private var circleTime:Number = 25;
 
 		/**上一次的位置***/
-		private var prePos:Image = this.pos_0;
+		private var prePos:Image;
 
-		/**次数***/
+		/**跑圈次数***/
 		private var randPos:int;
 
 		/**当前位置***/
 		private var curPos:Image;
 
-		/***当前位置编号***/
+		/**当前位置编号***/
 		private var curPosNum:int;
 
 		/**水果类型***/
@@ -145,17 +127,50 @@ package
 		/**总分***/
 		private var total_score:int;
 
-		/**当前的得分***/
+		/**当前得分***/
 		private var cur_score:int;
 
-		/**得分刷新时间***/
+		/**得分时间间隔***/
 		private var scoreInterval:Number = 25;
 
+		/**分数时间计时**/
 		private var scoreTime:Number = 25;
 
 
 
 		public function Game ()
+		{
+
+			//游戏初始化
+			init ();
+			//事件监听
+			listen ();
+
+
+		}
+
+		private function listen ():void
+		{
+
+			//开始按钮点击事件
+			this.btn_go.on ( Event.MOUSE_DOWN , this , onStart );
+			//跑圈完成事件
+			this.on ( "circleComplete" , this , circleComplete );
+			//投币按钮点击事件
+			this.btn_coin.on ( Event.MOUSE_DOWN , this , onScore );
+			//为每个button添加鼠标事件
+			this.btn_1.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_1' ] );
+			this.btn_2.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_2' ] );
+			this.btn_3.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_3' ] );
+			this.btn_4.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_4' ] );
+			this.btn_5.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_5' ] );
+			this.btn_6.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_6' ] );
+			this.btn_7.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_7' ] );
+			this.btn_8.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_8' ] );
+
+		}
+
+		private function init ():void
 		{
 
 			this.pos_0.visible = false;
@@ -182,24 +197,30 @@ package
 			this.pos_21.visible = false;
 			this.pos_22.visible = false;
 			this.pos_23.visible = false;
-
-			//初始化状态
-			//监听开始按钮事件
-			this.btn_go.on ( Event.MOUSE_DOWN , this , onStart );
-			this.on ( "Complete" , this , runComplete );
-
+			//默认总分为0
 			this.total_score = 0;
+			//默认当前分数为0
 			this.cur_score = 0;
+			//默认游戏状态为0,代表没有开始游戏
+			this.state = false;
+			//默认增加或者减少为增加
+			this.addOrdel = false;
+			//默认上一次位置为0位置
+			this.prePos = this.pos_0;
 
-			//为每个button添加鼠标事件
-			this.btn_1.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_1' ] );
-			this.btn_2.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_2' ] );
-			this.btn_3.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_3' ] );
-			this.btn_4.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_4' ] );
-			this.btn_5.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_5' ] );
-			this.btn_6.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_6' ] );
-			this.btn_7.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_7' ] );
-			this.btn_8.on ( Event.MOUSE_DOWN , this , onFruit , [ 'fruit_8' ] );
+		}
+
+		private function onScore ():void
+		{
+
+			//判断总分+10后是否大于9999
+			if ( this.total_score + 10 <= 9999 )
+			{
+				this.total_score += 10;
+				this.cur_score = this.total_score;
+				updateScoreUI ( this.cur_score );
+			}
+
 
 		}
 
@@ -209,7 +230,8 @@ package
 			if ( state == false )
 			{
 				console.log ( "开始游戏" );
-				curPosNum = 0;
+				//禁用各种按钮
+				this.curPosNum = 0;
 				randPos = randomPos ();
 				//跑圈循环
 				Laya.timer.frameLoop ( 1 , this , CircleLoop );
@@ -238,92 +260,142 @@ package
 				{
 					case "fruit_1":
 					{
-						if ( fruitCount[ 0 ] < 99 )
+						if ( this.total_score - 5 >= 0 )
 						{
-							fruitCount[ 0 ]++;
-							fruitCount[ 1 ] = fruitCount[ 0 ];
-							this.fruit_1_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 0 ] / 10 ) + ".png";
-							this.fruit_1_o.skin = "gameUI/num" + fruitCount[ 0 ] % 10 + ".png";
+							if ( fruitCount[ 0 ] < 99 )
+							{
+								fruitCount[ 0 ]++;
+								fruitCount[ 1 ] = fruitCount[ 0 ];
+								this.fruit_1_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 0 ] / 10 ) + ".png";
+								this.fruit_1_o.skin = "gameUI/num" + fruitCount[ 0 ] % 10 + ".png";
+								this.total_score -= 5;
+								this.cur_score = this.total_score;
+								updateScoreUI ( this.cur_score );
+							}
 						}
+
+
 						break;
 					}
 					case "fruit_2":
 					{
-						if ( fruitCount[ 2 ] < 99 )
+						if ( this.total_score - 10 >= 0 )
 						{
-							fruitCount[ 2 ]++;
-							fruitCount[ 3 ] = fruitCount[ 2 ];
-							this.fruit_2_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 2 ] / 10 ) + ".png";
-							this.fruit_2_o.skin = "gameUI/num" + fruitCount[ 2 ] % 10 + ".png";
+							if ( fruitCount[ 2 ] < 99 )
+							{
+								fruitCount[ 2 ]++;
+								fruitCount[ 3 ] = fruitCount[ 2 ];
+								this.fruit_2_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 2 ] / 10 ) + ".png";
+								this.fruit_2_o.skin = "gameUI/num" + fruitCount[ 2 ] % 10 + ".png";
+								this.total_score -= 10;
+								this.cur_score = this.total_score;
+								updateScoreUI ( this.cur_score );
+							}
 						}
 						break;
 					}
 					case "fruit_3":
 					{
-						if ( fruitCount[ 4 ] < 99 )
+						if ( this.total_score - 10 >= 0 )
 						{
-							fruitCount[ 4 ]++;
-							fruitCount[ 5 ] = fruitCount[ 4 ];
-							this.fruit_3_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 4 ] / 10 ) + ".png";
-							this.fruit_3_o.skin = "gameUI/num" + fruitCount[ 4 ] % 10 + ".png";
+							if ( fruitCount[ 4 ] < 99 )
+							{
+								fruitCount[ 4 ]++;
+								fruitCount[ 5 ] = fruitCount[ 4 ];
+								this.fruit_3_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 4 ] / 10 ) + ".png";
+								this.fruit_3_o.skin = "gameUI/num" + fruitCount[ 4 ] % 10 + ".png";
+								this.total_score -= 10;
+								this.cur_score = this.total_score;
+								updateScoreUI ( this.cur_score );
+							}
 						}
 
 						break;
 					}
 					case "fruit_4":
 					{
-						if ( fruitCount[ 6 ] < 99 )
+						if ( this.total_score - 15 >= 0 )
 						{
-							fruitCount[ 6 ]++;
-							fruitCount[ 7 ] = fruitCount[ 6 ];
-							this.fruit_4_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 6 ] / 10 ) + ".png";
-							this.fruit_4_o.skin = "gameUI/num" + fruitCount[ 6 ] % 10 + ".png";
+							if ( fruitCount[ 6 ] < 99 )
+							{
+								fruitCount[ 6 ]++;
+								fruitCount[ 7 ] = fruitCount[ 6 ];
+								this.fruit_4_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 6 ] / 10 ) + ".png";
+								this.fruit_4_o.skin = "gameUI/num" + fruitCount[ 6 ] % 10 + ".png";
+								this.total_score -= 15;
+								this.cur_score = this.total_score;
+								updateScoreUI ( this.cur_score );
+							}
 						}
 
 						break;
 					}
 					case "fruit_5":
 					{
-						if ( fruitCount[ 8 ] < 99 )
+						if ( this.total_score - 20 >= 0 )
 						{
-							fruitCount[ 8 ]++;
-							fruitCount[ 9 ] = fruitCount[ 8 ];
-							this.fruit_5_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 8 ] / 10 ) + ".png";
-							this.fruit_5_o.skin = "gameUI/num" + fruitCount[ 8 ] % 10 + ".png";
+							if ( fruitCount[ 8 ] < 99 )
+							{
+								fruitCount[ 8 ]++;
+								fruitCount[ 9 ] = fruitCount[ 8 ];
+								this.fruit_5_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 8 ] / 10 ) + ".png";
+								this.fruit_5_o.skin = "gameUI/num" + fruitCount[ 8 ] % 10 + ".png";
+								this.total_score -= 20;
+								this.cur_score = this.total_score;
+								updateScoreUI ( this.cur_score );
+							}
 						}
 
 						break;
 					}
 					case "fruit_6":
 					{
-						if ( fruitCount[ 10 ] < 99 )
+						if ( this.total_score - 30 >= 0 )
 						{
-							fruitCount[ 10 ]++;
-							fruitCount[ 11 ] = fruitCount[ 10 ];
-							this.fruit_6_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 10 ] / 10 ) + ".png";
-							this.fruit_6_o.skin = "gameUI/num" + fruitCount[ 10 ] % 10 + ".png";
+							if ( fruitCount[ 10 ] < 99 )
+							{
+								fruitCount[ 10 ]++;
+								fruitCount[ 11 ] = fruitCount[ 10 ];
+								this.fruit_6_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 10 ] / 10 ) + ".png";
+								this.fruit_6_o.skin = "gameUI/num" + fruitCount[ 10 ] % 10 + ".png";
+								this.total_score -= 30;
+								this.cur_score = this.total_score;
+								updateScoreUI ( this.cur_score );
+							}
 						}
 						break;
 					}
 					case "fruit_7":
 					{
-						if ( fruitCount[ 12 ] < 99 )
+						if ( this.total_score - 40 >= 0 )
 						{
-							fruitCount[ 12 ]++;
-							fruitCount[ 13 ] = fruitCount[ 12 ];
-							this.fruit_7_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 12 ] / 10 ) + ".png";
-							this.fruit_7_o.skin = "gameUI/num" + fruitCount[ 12 ] % 10 + ".png";
+							if ( fruitCount[ 12 ] < 99 )
+							{
+								fruitCount[ 12 ]++;
+								fruitCount[ 13 ] = fruitCount[ 12 ];
+								this.fruit_7_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 12 ] / 10 ) + ".png";
+								this.fruit_7_o.skin = "gameUI/num" + fruitCount[ 12 ] % 10 + ".png";
+								this.total_score -= 40;
+								this.cur_score = this.total_score;
+								updateScoreUI ( this.cur_score );
+							}
 						}
 						break;
 					}
 					case "fruit_8":
 					{
-						if ( fruitCount[ 14 ] < 99 )
+						if ( this.total_score - 120 >= 0 )
 						{
-							fruitCount[ 14 ]++;
-							fruitCount[ 15 ] = fruitCount[ 14 ];
-							this.fruit_8_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 14 ] / 10 ) + ".png";
-							this.fruit_8_o.skin = "gameUI/num" + fruitCount[ 14 ] % 10 + ".png";
+							if ( fruitCount[ 14 ] < 99 )
+							{
+								fruitCount[ 14 ]++;
+								fruitCount[ 15 ] = fruitCount[ 14 ];
+								this.fruit_8_t.skin = "gameUI/num" + Math.floor ( fruitCount[ 14 ] / 10 ) + ".png";
+								this.fruit_8_o.skin = "gameUI/num" + fruitCount[ 14 ] % 10 + ".png";
+								this.total_score -= 120;
+								this.cur_score = this.total_score;
+								updateScoreUI ( this.cur_score );
+							}
 						}
 						break;
 					}
@@ -483,13 +555,13 @@ package
 				Laya.timer.clear ( this , CircleLoop );
 
 				//发送完成事件,监听
-				this.event ( "Complete" );
+				this.event ( "circleComplete" );
 			}
 			//获取当前时间
 			var time:Number = Browser.now ();
 
 			//如果当前时间大于下次滚动时间
-			if ( time > this.runTime )
+			if ( time > this.circleTime )
 			{
 
 				prePos.visible = false;
@@ -497,17 +569,17 @@ package
 
 				if ( curPosNum < randPos * 0.5 )
 				{
-					this.runTime = time + this.runInterval_fast;
+					this.circleTime = time + this.circleInterval_fast;
 					curPos.skin = "gameUI/box0.png";
 				}
 				else if ( curPosNum < randPos * 0.75 )
 				{
-					this.runTime = time + this.runInterval_middle;
+					this.circleTime = time + this.circleInterval_middle;
 					curPos.skin = "gameUI/box1.png";
 				}
 				else
 				{
-					this.runTime = time + this.runInterval_slow;
+					this.circleTime = time + this.circleInterval_slow;
 					curPos.skin = "gameUI/box2.png";
 				}
 				curPos.visible = true;
@@ -518,7 +590,7 @@ package
 
 		}
 
-		private function runComplete ():void
+		private function circleComplete ():void
 		{
 
 			CalculateScore ();

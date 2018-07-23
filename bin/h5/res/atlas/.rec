@@ -34,6 +34,7 @@ P 7E990267 vscroll.png
 P E466EB1C vslider$bar.png
 P 2BFF7046 vslider.png
 D gameUI
+P D9EECC60 add.png
 P 82E68EED b1.png
 P E000D15D b2.png
 P 82EBD060 b3.png
@@ -46,6 +47,8 @@ P 4A37DB42 box0.png
 P 308F1154 box1.png
 P 0C2959AC box2.png
 P 0F6A81CF box3.png
+P 274C14D6 coin.png
+P 23C70272 del.png
 P 7C9CA3D1 go.png
 P 836648C6 num0.png
 P 00393022 num1.png

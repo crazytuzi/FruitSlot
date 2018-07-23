@@ -920,13 +920,26 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":723,"x":365,"width":93,"var":"btn_coin","stateNum":"2","skin":"gameUI/slotmachine-1.png","height":36},
+            "props":{"y":715,"x":377,"width":59,"var":"btn_coin","stateNum":"2","skin":"gameUI/coin.png","height":53},
             "nodeParent":1,
             "label":"Button(btn_coin)",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
             "compId":98,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Button",
+            "props":{"y":718,"x":237,"width":95,"var":"btn_addordel","stateNum":"1","skin":"gameUI/add.png","height":49},
+            "nodeParent":1,
+            "label":"Button(btn_addordel)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":100,
             "child":[
                 ]
         }],

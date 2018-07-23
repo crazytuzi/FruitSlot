@@ -60,7 +60,7 @@ package
 			];
 
 		/**每种水果对应位置,未用到,待删除***/
-		private var fruit_pos : Array = [
+		private var fruit_pos_tmp : Array = [
 			[ this.pos_5 , this.pos_11 , this.pos_17 , this.pos_23 ] , //苹果
 			[ this.pos_4 ] , //苹果*3
 			[ this.pos_9 , this.pos_21 ] , //橘子
@@ -79,6 +79,9 @@ package
 			[ this.pos_6 ] , //BOSS*120
 			[ this.pos_0 , this.pos_12 ], //goodluck
 			];
+
+		/**水果位置***/
+		private var fruit_pos : Array;
 
 		/**每种水果对应位置编号***/
 		private var fruit_posnum : Array = [
@@ -243,6 +246,32 @@ package
 			this.addOrdel = false;
 			//默认上一次位置为0位置
 			this.prePos = this.pos_0;
+			fruit_pos = [
+				this.pos_0 ,
+				this.pos_1 ,
+				this.pos_2 ,
+				this.pos_3 ,
+				this.pos_4 ,
+				this.pos_5 ,
+				this.pos_6 ,
+				this.pos_7 ,
+				this.pos_8 ,
+				this.pos_9 ,
+				this.pos_10 ,
+				this.pos_11 ,
+				this.pos_12 ,
+				this.pos_13 ,
+				this.pos_14 ,
+				this.pos_15 ,
+				this.pos_16 ,
+				this.pos_17 ,
+				this.pos_18 ,
+				this.pos_19 ,
+				this.pos_20 ,
+				this.pos_21 ,
+				this.pos_22 ,
+				this.pos_23
+				];
 
 		}
 
@@ -490,7 +519,6 @@ package
 			 *  1个BOSS*120	1
 			 */
 			var randnum : int = Math.round ( Math.random () * 140 );
-			//console.log ( randnum );
 			/**
 			 *  位置计算公式为:圈数*24+水果位置
 			 *  圈数为随机 2~3
@@ -615,7 +643,7 @@ package
 			{
 
 				prePos.visible = false;
-				curPos = num2pos ( curPosNum % 24 );
+				curPos = fruit_pos[ curPosNum % 24 ];
 
 				if ( curPosNum < randPos * 0.5 )
 				{
@@ -677,7 +705,6 @@ package
 
 			}
 
-
 		}
 
 		/**
@@ -708,142 +735,6 @@ package
 			this.point_hundred.skin = "gameUI/points" + hundred + ".png";
 			this.point_ten.skin = "gameUI/points" + ten + ".png";
 			this.point_one.skin = "gameUI/points" + one + ".png";
-
-		}
-
-		/**
-		 * 位置编号和位置组件映射
-		 * @param num	位置编号
-		 * @return 			位置组件
-		 *
-		 */
-		private function num2pos ( num : int ) : Image
-		{
-
-			switch ( num )
-			{
-				case 0:
-				{
-
-					return this.pos_0;
-				}
-				case 1:
-				{
-
-					return this.pos_1;
-				}
-				case 2:
-				{
-
-					return this.pos_2;
-				}
-				case 3:
-				{
-
-					return this.pos_3;
-				}
-				case 4:
-				{
-
-					return this.pos_4;
-				}
-				case 5:
-				{
-
-					return this.pos_5;
-				}
-				case 6:
-				{
-
-					return this.pos_6;
-				}
-				case 7:
-				{
-
-					return this.pos_7;
-				}
-				case 8:
-				{
-
-					return this.pos_8;
-				}
-				case 9:
-				{
-
-					return this.pos_9;
-				}
-				case 10:
-				{
-
-					return this.pos_10;
-				}
-				case 11:
-				{
-
-					return this.pos_11;
-				}
-				case 12:
-				{
-
-					return this.pos_12;
-				}
-				case 13:
-				{
-
-					return this.pos_13;
-				}
-				case 14:
-				{
-
-					return this.pos_14;
-				}
-				case 15:
-				{
-
-					return this.pos_15;
-				}
-				case 16:
-				{
-
-					return this.pos_16;
-				}
-				case 17:
-				{
-
-					return this.pos_17;
-				}
-				case 18:
-				{
-
-					return this.pos_18;
-				}
-				case 19:
-				{
-
-					return this.pos_19;
-				}
-				case 20:
-				{
-
-					return this.pos_20;
-				}
-				case 21:
-				{
-
-					return this.pos_21;
-				}
-				case 22:
-				{
-
-					return this.pos_22;
-				}
-				case 23:
-				{
-
-					return this.pos_23;
-				}
-			}
-			return null;
 
 		}
 	}

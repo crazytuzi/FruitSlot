@@ -38389,7 +38389,7 @@ var Game=(function(_super){
 		1200 ,
 		0];
 		/**每种水果对应位置,未用到,待删除***/
-		this.fruit_pos=[
+		this.fruit_pos_tmp=[
 		[ this.pos_5 ,this.pos_11 ,this.pos_17 ,this.pos_23] ,
 		[ this.pos_4] ,
 		[ this.pos_9 ,this.pos_21] ,
@@ -38407,6 +38407,8 @@ var Game=(function(_super){
 		[ this.pos_7] ,
 		[ this.pos_6] ,
 		[ this.pos_0 ,this.pos_12],];
+		/**水果位置***/
+		this.fruit_pos=null;
 		/**每种水果对应位置编号***/
 		this.fruit_posnum=[
 		[ 5 ,11 ,17 ,23] ,
@@ -38528,6 +38530,31 @@ var Game=(function(_super){
 		this.state=false;
 		this.addOrdel=false;
 		this.prePos=this.pos_0;
+		this.fruit_pos=[
+		this.pos_0 ,
+		this.pos_1 ,
+		this.pos_2 ,
+		this.pos_3 ,
+		this.pos_4 ,
+		this.pos_5 ,
+		this.pos_6 ,
+		this.pos_7 ,
+		this.pos_8 ,
+		this.pos_9 ,
+		this.pos_10 ,
+		this.pos_11 ,
+		this.pos_12 ,
+		this.pos_13 ,
+		this.pos_14 ,
+		this.pos_15 ,
+		this.pos_16 ,
+		this.pos_17 ,
+		this.pos_18 ,
+		this.pos_19 ,
+		this.pos_20 ,
+		this.pos_21 ,
+		this.pos_22 ,
+		this.pos_23];
 	}
 
 	/**
@@ -38785,7 +38812,9 @@ var Game=(function(_super){
 		var time=Browser.now ();
 		if (time > this.circleTime){
 			this.prePos.visible=false;
-			this.curPos=this.num2pos (this.curPosNum % 24);
+			console.log (this.curPosNum % 24);
+			console.log (this.fruit_pos);
+			this.curPos=this.fruit_pos[ this.curPosNum % 24];
 			if (this.curPosNum < this.randPos *0.5){
 				this.circleTime=time+this.circleInterval_fast;
 				this.curPos.skin="gameUI/box0.png";
